@@ -1,0 +1,26 @@
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes glow {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.6; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(-20px) rotate(45deg); }
+}
+
+.animate-twinkle {
+  animation: twinkle 4s infinite;
+}
+
+.animate-glow {
+  animation: glow 6s infinite;
+}
+
+.animate-float {
+  animation: float 8s infinite;
+} 
