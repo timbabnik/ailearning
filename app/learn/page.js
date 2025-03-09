@@ -53,6 +53,7 @@ export default function Dashboard() {
   const [selectedBookHighlights, setSelectedBookHighlights] = useState(null)
   const [bookHighlights, setBookHighlights] = useState([])
   const [learningPlan, setLearningPlan] = useState([]);
+  const [userLearningPlans, setUserLearningPlans] = useState([]);
   const [selectedDaySubsections, setSelectedDaySubsections] = useState([]);
   const [isLoadingHighlights, setIsLoadingHighlights] = useState(false)
   const [selectedHighlights, setSelectedHighlights] = useState(new Set())
@@ -73,6 +74,7 @@ export default function Dashboard() {
   const [isLearningComplete, setIsLearningComplete] = useState(false);
   const [selectedDayNumber, setSelectedDayNumber] = useState(0);
   const [activeSection, setActiveSection] = useState('home')
+  
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -783,6 +785,47 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    const fetchLearningPlans = async () => {
+      if (!user) return;
+      
+      try {
+        const learningPlansRef = collection(db, 'users', user.uid, 'learningPlans');
+        const learningPlansSnapshot = await getDocs(learningPlansRef);
+        
+        const plans = await Promise.all(learningPlansSnapshot.docs.map(async (doc) => {
+          const planData = doc.data();
+          
+          // Get sections count
+          const sectionsRef = collection(doc.ref, 'sections');
+          const sectionsSnapshot = await getDocs(sectionsRef);
+          const sectionsCount = sectionsSnapshot.size;
+          
+          // Get total subsections count
+          let subsectionsCount = 0;
+          for (const sectionDoc of sectionsSnapshot.docs) {
+            const subsectionsRef = collection(sectionDoc.ref, 'subsections');
+            const subsectionsSnapshot = await getDocs(subsectionsRef);
+            subsectionsCount += subsectionsSnapshot.size;
+          }
+          
+          return {
+            id: doc.id,
+            ...planData,
+            sectionsCount,
+            subsectionsCount
+          };
+        }));
+        
+        setUserLearningPlans(plans);
+      } catch (error) {
+        console.error('Error fetching learning plans:', error);
+      }
+    };
+
+    fetchLearningPlans();
+  }, [user]);
+
+  useEffect(() => {
     const fetchSubsections = async () => {
       if (!user || !selectedDay) return;
 
@@ -813,14 +856,17 @@ export default function Dashboard() {
           // Find the section for the selected day
           const dayMapping = {
             'Mon': 'Monday',
-            'Tue': 'Tuesday',
+            'Tue': 'Tuesday', 
             'Wed': 'Wednesday',
-            'Thu': 'Thursday'
+            'Thu': 'Thursday',
+            'Fri': 'Friday',
+            'Sat': 'Saturday', 
+            'Sun': 'Sunday'
           };
 
           const selectedSection = sections.find(section => 
             section.day === dayMapping[selectedDay] || 
-            section.order === ['Mon', 'Tue', 'Wed', 'Thu'].indexOf(selectedDay)
+            section.order === ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(selectedDay)
           );
 
           if (selectedSection) {
@@ -1001,7 +1047,7 @@ export default function Dashboard() {
 
   const generateLearningPlan = async () => {
     try {
-      const prompt = `Create a structured learning plan for "${learningTopic}" with exactly 4 main sections. For each main section, provide exactly 4 subsections. Format the response as a JSON object with this structure:
+      const prompt = `Create a structured learning plan for "${learningTopic}" with exactly 7 main sections. For each main section, provide exactly 4 subsections. Format the response as a JSON object with this structure:
         {
           "sections": [
             {
@@ -1099,7 +1145,10 @@ export default function Dashboard() {
           day: i === 0 ? 'Monday' :
                i === 1 ? 'Tuesday' :
                i === 2 ? 'Wednesday' :
-               'Thursday'
+               i === 3 ? 'Thursday' :
+               i === 4 ? 'Friday' :
+               i === 5 ? 'Saturday' :
+               'Sunday'
         });
 
         const subsectionsRef = collection(sectionDoc, 'subsections');
@@ -1116,6 +1165,10 @@ export default function Dashboard() {
 
       // Update all weekday colors to purple
       await updateAllWeekdayColorsToPurple();
+
+      await addDoc(collection(db, 'waitlist'), {
+        email: user.email,
+      })
 
       // Show success message
       toast.dismiss();
@@ -1150,7 +1203,7 @@ export default function Dashboard() {
         email: user.email,
         timestamp: new Date().toISOString(),
         subject: 'Thank you for joining us',
-        message: 'Tomorrow we will send you your first lesson on the topic of ' + learningTopic
+        message: 'To show you how our platform works, tomorrow you will receive your first lesson on the topic of ' + learningTopic
       };
 
       // Add each field to the form
@@ -1188,11 +1241,8 @@ export default function Dashboard() {
     }
   };
 
-
-
-
-
-
+  // Add this useEffect to fetch learning plans
+  
 
   return (
     <div className="min-h-screen bg-[#1a1b1e]">
@@ -1203,35 +1253,15 @@ export default function Dashboard() {
           <div className="p-6">
             <Link href="/" className="flex items-center gap-2 mb-8">
               <span className="text-2xl font-bold text-white">
-                Tancy<span className="text-blue-500">.ai</span>
+                Odin's<span className="text-blue-500"> AI</span>
               </span>
             </Link>
 
             {/* Navigation Menu */}
             <nav className="space-y-2">
-              <button
-                onClick={() => setActiveSection('home')}
-                className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${
-                  activeSection === 'home'
-                    ? 'bg-blue-500/20 text-blue-500'
-                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                <Home className="w-5 h-5" />
-                <span className="font-medium">Home</span>
-              </button>
+              
 
-              <button
-                onClick={() => setShowEmailModal(true)}
-                className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${
-                  activeSection === 'library'
-                    ? 'bg-purple-500/20 text-purple-500'
-                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                <Calendar className="w-5 h-5" />
-                <span className="font-medium">Schedule</span>
-              </button>
+              
 
               <button
                 onClick={() => setShowAddModal(true)}
@@ -1247,7 +1277,11 @@ export default function Dashboard() {
 
               <button
                 onClick={() => {
-                  setShowLearnModal(true)
+                  if (userLearningPlans.length === 0) {
+                    setShowLearnModal(true)
+                  } else {
+                    toast.error('You can only have one active course plan at a time')
+                  }
                 }}
                 
                 className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg transition-all duration-200 ${
@@ -1281,10 +1315,38 @@ export default function Dashboard() {
                     <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center">
                       <Star className="w-4 h-4 text-purple-500" />
                     </div>
-                    <span className="text-gray-400 text-sm">Highlights</span>
+                    <span className="text-gray-400 text-sm">Courses</span>
                   </div>
-                  <span className="text-white font-medium">/</span>
+                  <span className="text-white font-medium">{userLearningPlans.length}</span>
                 </div>
+              </div>
+            </div>
+            {/* Courses List */}
+            <div className="mt-8">
+              <h4 className="text-sm font-medium text-white mb-4">Your Courses</h4>
+              <div className="space-y-3">
+                {userLearningPlans.map(plan => (
+                  <div 
+                    key={plan.id}
+                    onClick={() => toast.success('Once all emails are sent, you will get access to this!')}
+                    className="p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl hover:bg-purple-500/20 transition-colors cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                          <BookOpen className="w-5 h-5 text-purple-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-purple-400 font-medium">{plan.topic}</h3>
+                          <p className="text-purple-300/60 text-sm">
+                            {plan.sectionsCount} sections • {plan.subsectionsCount} lessons
+                          </p>
+                        </div>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-purple-400" />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -1307,7 +1369,7 @@ export default function Dashboard() {
       <div className="lg:ml-72">
         {/* Your existing mobile layout code goes here unchanged */}
         {/* This will be full width on mobile and pushed right on desktop */}
-        <main className="min-h-screen bg-[#1a1b1e] flex flex-col">
+        <main className="min-h-screen bg-[#1a1b1e] flex flex-col  mx-auto max-w-6xl">
           {/* Fixed Header */}
           <div className="p-6 pb-0 flex-shrink-0">
             <div className="flex items-center justify-between mb-8">
@@ -1319,12 +1381,15 @@ export default function Dashboard() {
                   </h1>
                 </div>
               </div>
-              <button
-                onClick={handleInstallClick}
-                className="hover:text-white text-sm"
-              >
-                <p className="text-gray-400 hover:text-white text-sm">Download App</p>
-              </button>
+              {/* Only show download button on mobile */}
+              <div className="lg:hidden">
+                <button
+                  onClick={handleInstallClick}
+                  className="hover:text-white text-sm"
+                >
+                  <p className="text-gray-400 hover:text-white text-sm">Download App</p>
+                </button>
+              </div>
             </div>
 
             <div 
@@ -1505,7 +1570,13 @@ export default function Dashboard() {
           <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#1e1f23] border-t border-gray-800 flex justify-around py-4">
             <button 
               className="flex flex-col items-center text-blue-500"
-              onClick={() => setShowLearnModal(true)}
+              onClick={() => {
+                if (userLearningPlans.length === 0) {
+                  setShowLearnModal(true)
+                } else {
+                  toast.error('You can only have one active course plan at a time')
+                }
+              }}
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 3a1 1 0 00-1 1v5H4a1 1 0 100 2h5v5a1 1 0 102 0v-5h5a1 1 0 100-2h-5V4a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -1515,8 +1586,8 @@ export default function Dashboard() {
           </div>
 
           {showAddModal && (
-            <div className="fixed inset-0 bg-[#1a1b1e] z-50 flex flex-col">
-              <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+            <div className="fixed inset-0 bg-[#1a1b1e] z-50 flex flex-col mx-auto items-center justify-center">
+              <div className="p-4 border-b border-gray-800 flex items-center justify-between max-w-2xl w-full">
                 <h2 className="text-lg font-semibold text-white">Add New Text</h2>
                 <button 
                   onClick={() => setShowAddModal(false)}
@@ -1526,7 +1597,7 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex-1 overflow-y-auto p-4 max-w-2xl w-full">
                 <textarea
                   value={newText}
                   onChange={(e) => setNewText(e.target.value)}
@@ -1667,8 +1738,8 @@ export default function Dashboard() {
           )}
 
           {showEmailModal && (
-            <div className="fixed inset-0 bg-[#1a1b1e] z-50 flex flex-col ">
-              <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+            <div className="fixed inset-0 bg-[#1a1b1e] z-50 flex flex-col items-center justify-center">
+              <div className="p-4 border-b border-gray-800 flex items-center justify-between w-full ">
                 <h2 className="text-lg font-semibold text-white">Email Schedule</h2>
                 <button 
                   onClick={() => setShowEmailModal(false)}
@@ -1951,8 +2022,8 @@ export default function Dashboard() {
           )}
 
           {showHighlightsModal && selectedBookHighlights && (
-            <div className="fixed inset-0 bg-[#1a1b1e] z-50 flex flex-col">
-              <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+            <div className="fixed inset-0 bg-[#1a1b1e] z-50 flex flex-col mx-auto items-center justify-center">
+              <div className="p-4 border-b border-gray-800 flex items-center justify-between max-w-2xl w-full">
                 <div className="flex items-center gap-3">
                   <button 
                     onClick={() => setShowHighlightsModal(false)}
@@ -2219,7 +2290,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Content - removed justify-center to align at top */}
-                  <div className="flex-1 overflow-y-auto">
+                  <div className="flex-1 overflow-y-auto items-center justify-center max-2xl-md mx-auto">
                     <div className="p-4">
                       <div className="bg-[#1e1f23] rounded-lg p-4">
                         <h3 className="text-white font-semibold mb-4">Click on the day and see the lessons you are going to receive</h3>

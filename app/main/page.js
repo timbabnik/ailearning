@@ -270,12 +270,10 @@ const handleSubmit = async (e) => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <span className="text-xl font-bold text-white">
-                  Tancy<span className="text-blue-500">.ai</span>
+                  Odin's<span className="text-blue-500"> AI</span>
                 </span>
               </div>
-              <button onClick={sendTestEmail}>
-                Join Waitlist
-              </button>
+              
               <div className="flex items-center gap-4">
                 <Link 
                   href="/www"
