@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast'
+import { Inter } from 'next/font/google'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,9 +13,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata = {
-  title: 'Your App Name',
-  description: 'Your app description',
+  title: 'Daily Odin',
+  description: 'AI-powered learning platform for daily knowledge and growth',
   manifest: "/test/manifest.json",
   appleWebApp: {
     capable: true,
@@ -44,7 +47,7 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-title" content="Your App Name" />
         <meta name="theme-color" content="#1a1b1e" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}>
         {children}
         <Toaster position="bottom-right" />
       </body>

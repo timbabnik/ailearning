@@ -1,8 +1,8 @@
 {
-    "name": "Book",
-    "short_name": "App",
-    "description": "Book",
-    "start_url": "/test",
+    "name": "Daily Odin",
+    "short_name": "Daily Odin",
+    "description": "AI-powered learning platform for daily knowledge and growth",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",

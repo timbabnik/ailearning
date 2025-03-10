@@ -1172,7 +1172,7 @@ export default function Dashboard() {
 
       // Show success message
       toast.dismiss();
-      toast.success('Learning plan saved successfully!');
+      toast.success('Check your email for your learning plan!');
       
       // Reset states and close modal
       setIsLearningComplete(false);
@@ -1842,7 +1842,7 @@ export default function Dashboard() {
 
                       {/* Blue content */}
                       {weekdayColors[selectedDay] === 'blue' && (
-                        <div className="mt-4">
+                        <div className="mt-4 max-w-[430px]">
                           <p className="text-white/80 text-sm mb-4">
                             Every week you will get deep into one of your books/notes with takeaways
                           </p>
@@ -1939,7 +1939,7 @@ export default function Dashboard() {
 
                       {/* Yellow content */}
                       {weekdayColors[selectedDay] === 'yellow' && (
-                        <div className="mt-4">
+                        <div className="mt-4 max-w-[430px]">
                           <p className="text-white/80 text-sm mb-4">
                              You will get highlights you favorited. Curate your favorites that inspires you and get them every day.
                           </p>

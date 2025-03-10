@@ -281,12 +281,12 @@ const handleSubmit = async (e) => {
                 >
                   Sign in
                 </Link>
-                <button
-                  onClick={() => setShowModal(true)}
+                <Link
+                  href="/learn"
                   className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                 >
                   Get Started
-                </button>
+                </Link>
                 {showModal && (
                   <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-gradient-to-br from-[#1a1b1e] to-[#252629] p-8 rounded-2xl max-w-md w-full mx-4 border border-white/10 shadow-xl shadow-black/20">
@@ -377,10 +377,10 @@ const handleSubmit = async (e) => {
                 <div className="max-w-md mx-auto relative">
                   <input
                     type="email"
-                    placeholder="What would you like to learn?"
+                    placeholder="What you'd like to learn?"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 text-white placeholder-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 pr-32"
+                    className="w-full text-sm px-4 py-3 bg-white/10 text-white placeholder-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 pr-32"
                   />
                   <Link 
                     href="/learn"
