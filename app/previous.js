@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { ChevronRight, Calendar, BookOpen, Star, Brain, Sparkles, Mail } from 'lucide-react'
+import { ChevronRight, Calendar, BookOpen, Star, Brain, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { auth, googleProvider, db } from '../firebase'// Make sure the path is correct
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Main() {
   const [email, setEmail] = useState('')
-  const [selectedDay, setSelectedDay] = useState("Tue")
+  const [selectedDay, setSelectedDay] = useState("Mon")
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showModal, setShowModal] = useState(false)
   const [waitlistEmail, setWaitlistEmail] = useState('')
@@ -357,7 +357,7 @@ const handleSubmit = async (e) => {
             </div>
             <div className="flex justify-center">
               <img 
-                src="https://i.postimg.cc/6psbYRYm/IMG-1321.png" 
+                src="https://i.postimg.cc/Hsg4cNyP/IMG-1262.png" 
                 className="h-[700px] w-auto object-contain mt-10 rounded-3xl border-2 border-white/50"
               />
             </div>
@@ -367,28 +367,42 @@ const handleSubmit = async (e) => {
               <div className="text-center">
                 <h1 id="learn" className="text-4xl sm:text-6xl font-bold text-white mb-6">
                   
-                  Daily Learning <span className="text-blue-500">on Autopilot</span>
+                  Learn new things, <span className="text-blue-500">Revisit old ones</span>
                 </h1>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Create your own learning schedule and receive daily emails to learn new things and revisit old ones
+                  Let AI create your personalized learning journey and deliver bite-sized lessons to your inbox daily
                 </p>
                 
                 {/* CTA Section */}
-                <Link
-                  href="/learn"
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
-                >
-                  Get Started
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
+                <div className="max-w-md mx-auto relative">
+                  <input
+                    type="email"
+                    placeholder="What you'd like to learn?"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full text-sm px-4 py-3 bg-white/10 text-white placeholder-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 pr-32"
+                  />
+                  <Link 
+                    href="/learn"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 whitespace-nowrap px-4 py-2 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+                  >
+                    Get Started
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
 
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-[#1e1f23] rounded-xl mt-32">
                 <div className="text-center mb-12">
-                  <h2 id="schedule" className="text-3xl font-bold text-white mb-4 max-w-[600px] mx-auto px-4 sm:px-0">
-                    Receive exactly what you want every day to boost your genius
+                  <h2 id="schedule" className="text-3xl font-bold text-white mb-4">
+                    Email Automation - Daily Learning Schedule
                   </h2>
-                  
+                  <p className="text-gray-400 max-w-2xl mx-auto">
+                    1. Create AI-personalized courses and get each chapter delivered to your inbox daily<br/>
+                    2. Upload your books highlights and notes, and receive them in your email<br/>
+                    3. Revisit your favorites notes at the right time to remember them forever<br/>
+                    4. Receive random highlights from your books and notes every day
+                  </p>
                 </div>
                 <p className="text-gray-600 font-bold max-w-2xl mx-auto text-center">
                   *Below is an example that you can customize to your liking*
@@ -431,9 +445,9 @@ const handleSubmit = async (e) => {
                         </div>
                         <h3 className="text-white font-medium">
                           {colorMap[selectedDay] === 'blue' ? "Deep Learning" :
-                           colorMap[selectedDay] === 'purple' ? "AI created course" :
+                           colorMap[selectedDay] === 'purple' ? "History of Roman Empire" :
                            colorMap[selectedDay] === 'green' ? "Random Highlights" :
-                           colorMap[selectedDay] === 'yellow' ? "Favorites" :
+                           colorMap[selectedDay] === 'yellow' ? "Favorite" :
                            "Today's Email"}
                         </h3>
                       </div>
@@ -487,7 +501,7 @@ const handleSubmit = async (e) => {
                                     </div>
                                     <div className="ml-6 pb-6">
                                       <p className="text-white/60 text-sm">
-                                      The Twelve Tables
+                                      The Twelve Tables and Early Roman Law
                                       </p>
                                     </div>
                                   </div>
@@ -757,101 +771,41 @@ const handleSubmit = async (e) => {
 
                 {/* Features Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
-                  {/* AI-Powered Learning */}
-                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
-                    {/* Gradient border effect */}
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
+                  <div className="bg-[#1e1f23] p-6 rounded-xl">
                     
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full flex flex-col">
-                      {/* Image with overlay */}
-                      <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1e1f23]/90"></div>
-                        <img 
-                          src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=2070" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                          alt="AI Learning"
-                        />
-                      </div>
-
-                      {/* Icon */}
-                      <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6">
-                        <Brain className="w-8 h-8 text-blue-500" />
-                      </div>
-
-                      {/* Content */}
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-                        Let AI create a personalized course just for you
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed flex-grow">
+                    <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-2">AI-Powered Learning</h3>
+                    <p className="text-gray-400">
                       Do you want to learn about American History, AI, Mindfulness, Cooking, and more? Let AI create a personalized course just for you.
-
-
-                      </p>
-
-                      {/* Stats */}
-                     
-
-                      {/* Hover Button */}
-                      
-                    </div>
+                    </p>
                   </div>
 
-                  {/* Old Wisdom Card */}
-                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full flex flex-col">
-                      <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1e1f23]/90"></div>
-                        <img 
-                          src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=2068" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                          alt="Old Wisdom"
-                        />
-                      </div>
-
-                      <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6">
-                        <BookOpen className="w-8 h-8 text-purple-500" />
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
-                        Revisit your highlights and remember them forever
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed flex-grow">
-                      Upload your book highlights, notes, and quotes to revisit them.
-                      </p>
-
-                      
+                  <div className="bg-[#1e1f23] p-6 rounded-xl">
+                    <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
                     </div>
+                    <h3 id="about" className="text-xl font-semibold text-white mb-2">Old Wisdom</h3>
+                    <p className="text-gray-400">
+                      Upload your book highlights, notes, and quotes to revisit them and remember them forever.
+                    </p>
                   </div>
 
-                  {/* Email Automation Card */}
-                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-green-500 via-teal-500 to-green-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full flex flex-col">
-                      <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1e1f23]/90"></div>
-                        <img 
-                          src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=2070"
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                          alt="Email Automation"
-                        />
-                      </div>
-
-                      <div className="bg-gradient-to-r from-green-500/10 to-teal-500/10 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6">
-                        <Mail className="w-8 h-8 text-green-500" />
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors">
-                        Email Automation
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed flex-grow">
-                      Create your own email automation schedule. You can receive random highlights from your uploaded notes, deep dives, favorite highlights, or even create your own course with AI.
-                      </p>
-
-                      
+                  <div className="bg-[#1e1f23] p-6 rounded-xl">
+                    <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
                     </div>
+                    <h3 className="text-xl font-semibold text-white mb-2">Email automation</h3>
+                    <p className="text-gray-400">
+                      Get daily emails with new and old knowledge: AI courses by chapters, random highlights from your highlights/notes, deep learning from your favorite books.
+                    </p>
                   </div>
                 </div>
 
@@ -860,13 +814,198 @@ const handleSubmit = async (e) => {
               </div>
 
               {/* What You Can Learn Section */}
-              
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                    Learn <span className="text-blue-500">Anything</span>
+                  </h2>
+                  <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Choose from endless possibilities. Our AI creates personalized courses 
+                    tailored to your learning style and goals
+                  </p>
+                </div>
+
+                {/* Topics Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {/* Ancient History */}
+                  <div className="group relative overflow-hidden rounded-2xl bg-[#1e1f23] hover:bg-[#23242a] transition-all duration-300 shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e1f23] via-black/50 to-transparent z-10"></div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=2070"
+                      alt="Ancient History" 
+                      className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
+                      <div className="bg-blue-500/20 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <svg className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-3">Ancient History</h3>
+                      <p className="text-gray-300 text-base leading-relaxed">
+                        Explore civilizations, empires, and the foundations of human society
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Mindfulness */}
+                  <div className="group relative overflow-hidden rounded-2xl bg-[#1e1f23] hover:bg-[#23242a] transition-all duration-300 shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e1f23] via-black/50 to-transparent z-10"></div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2070" 
+                      alt="Mindfulness" 
+                      className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
+                      <div className="bg-purple-500/20 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <svg className="w-6 h-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-3">Mindfulness</h3>
+                      <p className="text-gray-300 text-base leading-relaxed">
+                        Learn meditation, stress management, and mental wellness techniques
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Cooking */}
+                  <div className="group relative overflow-hidden rounded-2xl bg-[#1e1f23] hover:bg-[#23242a] transition-all duration-300 shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e1f23] via-black/50 to-transparent z-10"></div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070" 
+                      alt="Cooking" 
+                      className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
+                      <div className="bg-green-500/20 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <svg className="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-3">Cooking</h3>
+                      <p className="text-gray-300 text-base leading-relaxed">
+                        Master culinary techniques, recipes, and food science
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Continue with other cards using the same enhanced styling */}
+                </div>
+
+                {/* Enhanced CTA Button */}
+                <div className="text-center mt-16">
+                  <Link 
+                    href="/learn"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/20"
+                  >
+                    Start Your Learning Journey
+                    <ChevronRight className="w-5 h-5" />
+                  </Link>
+                </div>
+              </div>
 
               {/* Revisit Highlights Section */}
-              
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-white/10">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                    Revisit <span className="text-purple-500">Highlights</span>
+                  </h2>
+                  <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                    Never forget what you've read. Get your favorite highlights delivered to your inbox 
+                    at the perfect time for maximum retention
+                  </p>
+                </div>
+
+                {/* Books Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {/* Atomic Habits */}
+                  <div className="group bg-[#1e1f23] rounded-2xl p-6 hover:bg-[#23242a] transition-all duration-300 shadow-xl border border-white/5">
+                    <div className="flex items-start gap-4 mb-6">
+                      <img 
+                        src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1974" 
+                        alt="Atomic Habits" 
+                        className="w-16 h-24 object-cover rounded-lg shadow-lg"
+                      />
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-1">Atomic Habits</h3>
+                        <p className="text-gray-400 text-sm">James Clear</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-xl">
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          "You do not rise to the level of your goals. You fall to the level of your systems."
+                        </p>
+                      </div>
+                      <p className="text-xs text-gray-500">Last revisited 3 days ago</p>
+                    </div>
+                  </div>
+
+                  {/* Meditations */}
+                  <div className="group bg-[#1e1f23] rounded-2xl p-6 hover:bg-[#23242a] transition-all duration-300 shadow-xl border border-white/5">
+                    <div className="flex items-start gap-4 mb-6">
+                      <img 
+                        src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2068" 
+                        alt="Meditations" 
+                        className="w-16 h-24 object-cover rounded-lg shadow-lg"
+                      />
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-1">Meditations</h3>
+                        <p className="text-gray-400 text-sm">Marcus Aurelius</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-xl">
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          "Very little is needed to make a happy life; it is all within yourself, in your way of thinking."
+                        </p>
+                      </div>
+                      <p className="text-xs text-gray-500">Last revisited 1 week ago</p>
+                    </div>
+                  </div>
+
+                  {/* Think and Grow Rich */}
+                  <div className="group bg-[#1e1f23] rounded-2xl p-6 hover:bg-[#23242a] transition-all duration-300 shadow-xl border border-white/5">
+                    <div className="flex items-start gap-4 mb-6">
+                      <img 
+                        src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=2068" 
+                        alt="Think and Grow Rich" 
+                        className="w-16 h-24 object-cover rounded-lg shadow-lg"
+                      />
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-1">Think and Grow Rich</h3>
+                        <p className="text-gray-400 text-sm">Napoleon Hill</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="bg-purple-500/10 border border-purple-500/20 p-4 rounded-xl">
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          "Whatever the mind can conceive and believe, it can achieve."
+                        </p>
+                      </div>
+                      <p className="text-xs text-gray-500">Last revisited 2 weeks ago</p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* CTA Button */}
-           
+                <div className="text-center mt-12">
+                  <Link 
+                    href="/learn"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl font-medium hover:from-purple-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/20 group"
+                  >
+                    <span>Start Saving Highlights</span>
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <p className="text-gray-400 text-sm mt-4">
+                    Join thousands of readers building their second brain
+                  </p>
+                </div>
+              </div>
 
               {/* Testimonials Section */}
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-white/10">
