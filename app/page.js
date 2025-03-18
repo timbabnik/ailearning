@@ -6,6 +6,7 @@ import { auth, googleProvider, db } from '../firebase'// Make sure the path is c
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { toast } from 'react-hot-toast'  // For notifications
 import axios from "axios";
+import Image from 'next/image'
 
 export default function Main() {
   const [email, setEmail] = useState('')
@@ -355,10 +356,15 @@ const handleSubmit = async (e) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1a1b1e] via-transparent to-transparent"></div>
               </div>
             </div>
-            <div className="flex justify-center">
-              <img 
-                src="https://i.postimg.cc/6psbYRYm/IMG-1321.png" 
-                className="h-[700px] w-auto object-contain mt-10 rounded-3xl border-2 border-white/50"
+            <div className="flex justify-center px-4 sm:px-0">
+              <Image 
+                src="/test.png"
+                alt="Platform preview"
+                width={350}
+                height={350}
+                className="mt-10 rounded-3xl border-2 border-white/50 w-full sm:w-[350px] h-auto"
+                priority
+                quality={100}
               />
             </div>
             {/* Hero Section */}
