@@ -358,7 +358,7 @@ const handleSubmit = async (e) => {
             </div>
             <div className="flex justify-center px-4 sm:px-0">
               <Image 
-                src="/test.png"
+                src="/test.PNG"
                 alt="Platform preview"
                 width={350}
                 height={350}
