@@ -356,22 +356,8 @@ const handleSubmit = async (e) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1a1b1e] via-transparent to-transparent"></div>
               </div>
             </div>
-            <div className="flex justify-center px-4 sm:px-0">
-              <Image 
-                src="/test.PNG"
-                alt="Platform preview"
-                width={350}
-                height={350}
-                className="mt-10 rounded-3xl border-2 border-white/50 w-full sm:w-[350px] h-auto"
-                priority
-                quality={100}
-              />
-            </div>
-            {/* Hero Section */}
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
-              
-              <div className="text-center">
-                <h1 id="learn" className="text-4xl sm:text-6xl font-bold text-white mb-6">
+            <div className="text-center">
+                <h1 id="learn" className="text-4xl sm:text-6xl font-bold text-white mb-6 mt-10">
                   
                   Daily Learning <span className="text-blue-500">on Autopilot</span>
                 </h1>
@@ -379,15 +365,32 @@ const handleSubmit = async (e) => {
                 Create your own learning schedule and receive daily emails to learn new things and revisit old ones
                 </p>
                 
-                {/* CTA Section */}
-                <Link
-                  href="/learn"
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
-                >
-                  Get Started
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
+                {/* Add relative positioning and z-index to ensure button is clickable */}
+                <div className="relative z-10">
+                  <Link
+                    href="/learn"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
+                  >
+                    Get Started
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
+            <div className="flex justify-center px-4 sm:px-0">
+              <Image 
+                src="/test.PNG"
+                alt="Platform preview"
+                width={350}
+                height={350}
+                className="mt-24 rounded-3xl border-2 border-white/50 w-full sm:w-[350px] h-auto"
+                priority
+                quality={100}
+              />
+            </div>
+            {/* Hero Section */}
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
+              
+              
 
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-[#1e1f23] rounded-xl mt-32">
                 <div className="text-center mb-12">
