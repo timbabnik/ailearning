@@ -389,7 +389,46 @@ const handleSubmit = async (e) => {
             </div>
             {/* Hero Section */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
-              
+                {/* How It Works Section */}
+                <div className="text-center mb-16">
+                 
+                  <h2 className="text-4xl sm:text-5xl font-bold text-white mt-4 mb-6">
+                    How It <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Works</span>
+                  </h2>
+                
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                  {/* Step 1 */}
+                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
+                    <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
+                    
+                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full">
+                      <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <span className="text-2xl font-bold text-blue-500">1</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-4">Choose the content</h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        Upload your book highlights, notes you want to remember or let AI create a course on whatever you want to learn.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
+                    <div className="absolute -inset-[1px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
+                    
+                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full">
+                      <div className="bg-purple-500/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
+                        <span className="text-2xl font-bold text-purple-500">2</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-4">Receive it in your email</h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        Get the content you chose delivered to your email piece by piece
+                      </p>
+                    </div>
+                  </div>
+                </div>
               
 
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-[#1e1f23] rounded-xl mt-32">
@@ -764,104 +803,21 @@ const handleSubmit = async (e) => {
                   </div>
                 </div>
 
+                
+
                 {/* Features Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
                   {/* AI-Powered Learning */}
-                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
+                 
                     {/* Gradient border effect */}
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
+                   
                     
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full flex flex-col">
+                  
                       {/* Image with overlay */}
-                      <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1e1f23]/90"></div>
-                        <img 
-                          src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=2070" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                          alt="AI Learning"
-                        />
-                      </div>
+                      
 
                       {/* Icon */}
-                      <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6">
-                        <Brain className="w-8 h-8 text-blue-500" />
-                      </div>
-
-                      {/* Content */}
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-                        Let AI create a personalized course just for you
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed flex-grow">
-                      Do you want to learn about American History, AI, Mindfulness, Cooking, and more? Let AI create a personalized course just for you.
-
-
-                      </p>
-
-                      {/* Stats */}
-                     
-
-                      {/* Hover Button */}
                       
-                    </div>
-                  </div>
-
-                  {/* Old Wisdom Card */}
-                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full flex flex-col">
-                      <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1e1f23]/90"></div>
-                        <img 
-                          src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=2068" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                          alt="Old Wisdom"
-                        />
-                      </div>
-
-                      <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6">
-                        <BookOpen className="w-8 h-8 text-purple-500" />
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
-                        Revisit your highlights and remember them forever
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed flex-grow">
-                      Upload your book highlights, notes, and quotes to revisit them.
-                      </p>
-
-                      
-                    </div>
-                  </div>
-
-                  {/* Email Automation Card */}
-                  <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105">
-                    <div className="absolute -inset-[1px] bg-gradient-to-r from-green-500 via-teal-500 to-green-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl h-full flex flex-col">
-                      <div className="relative h-48 mb-6 overflow-hidden rounded-xl">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#1e1f23]/90"></div>
-                        <img 
-                          src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=2070"
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                          alt="Email Automation"
-                        />
-                      </div>
-
-                      <div className="bg-gradient-to-r from-green-500/10 to-teal-500/10 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mb-6">
-                        <Mail className="w-8 h-8 text-green-500" />
-                      </div>
-
-                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors">
-                        Email Automation
-                      </h3>
-                      <p className="text-gray-400 leading-relaxed flex-grow">
-                      Create your own email automation schedule. You can receive random highlights from your uploaded notes, deep dives, favorite highlights, or even create your own course with AI.
-                      </p>
-
-                      
-                    </div>
-                  </div>
                 </div>
 
                 {/* Calendar Section */}
