@@ -195,7 +195,7 @@ const handleSubmit = async (e) => {
         </div>
 
         {/* Floating Elements */}
-        <div className="absolute top-1/4 left-20 animate-float-slow">
+        <div className="absolute top-[10%] left-20 animate-float-slow">
           <div className="w-40 h-56 bg-[#1e1f23] rounded-lg shadow-xl transform rotate-6 flex flex-col items-center justify-center p-4">
             <BookOpen className="w-8 h-8 text-blue-500 mb-2" />
             <div className="w-20 h-2 bg-blue-500/20 rounded mb-2"></div>
@@ -203,7 +203,7 @@ const handleSubmit = async (e) => {
           </div>
         </div>
 
-        <div className="absolute top-1/3 right-24 animate-float-normal">
+        <div className="absolute top-[15%] right-24 animate-float-normal">
           <div className="w-40 h-56 bg-[#1e1f23] rounded-lg shadow-xl transform -rotate-12 flex flex-col items-center justify-center p-4">
             <Star className="w-8 h-8 text-purple-500 mb-2" />
             <div className="w-20 h-2 bg-purple-500/20 rounded mb-2"></div>
