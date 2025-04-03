@@ -283,18 +283,8 @@ const handleSubmit = async (e) => {
               </div>
               
               <div className="flex items-center gap-4">
-                <Link 
-                  href="/learn"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Sign in
-                </Link>
-                <Link
-                  href="/learn"
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  Get Started
-                </Link>
+               
+                
                 {showModal && (
                   <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-gradient-to-br from-[#1a1b1e] to-[#252629] p-8 rounded-2xl max-w-md w-full mx-4 border border-white/10 shadow-xl shadow-black/20">
@@ -374,12 +364,12 @@ const handleSubmit = async (e) => {
                 
                 {/* Add relative positioning and z-index to ensure button is clickable */}
                 <button
-                  onClick={() => setShowModal(true)}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
-                >
-                  <span>Get Started</span>
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+      onClick={() => setShowModal(true)}
+      className="relative z-20 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
+    >
+      <span>Get Started</span>
+      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </button>
               </div>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="text-center mb-0">
