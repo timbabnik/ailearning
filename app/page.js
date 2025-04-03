@@ -1,12 +1,14 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { ChevronRight, Calendar, BookOpen, Star, Brain, Sparkles, Mail } from 'lucide-react'
+import { ChevronRight, Calendar, BookOpen, Star, Brain, Sparkles, Mail, Plus } from 'lucide-react'
 import Link from 'next/link'
 import { auth, googleProvider, db } from '../firebase'// Make sure the path is correct
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { toast } from 'react-hot-toast'  // For notifications
 import axios from "axios";
 import Image from 'next/image'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 export default function Main() {
   const [email, setEmail] = useState('')
@@ -176,6 +178,11 @@ const handleSubmit = async (e) => {
       console.error("Error sending test email:", error);
       toast.error('Failed to send test email');
     }
+  };
+
+  const calculateMasteryPercentage = (revisitCount) => {
+    const targetRevisits = 5; // Number of revisits needed for mastery
+    return Math.min((revisitCount / targetRevisits) * 100, 100);
   };
 
   return (
@@ -359,34 +366,131 @@ const handleSubmit = async (e) => {
             <div className="text-center">
                 <h1 id="learn" className="text-4xl sm:text-6xl font-bold text-white mb-6 mt-10">
                   
-                  Daily Learning <span className="text-blue-500">on Autopilot</span>
+                  Turn Notes <span className="text-blue-500">into Mastery</span>
                 </h1>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Create your own learning schedule and receive daily emails to learn new things and revisit old ones
+                Get your Book highlights or important notes delivered to your email every day until you master them
                 </p>
                 
                 {/* Add relative positioning and z-index to ensure button is clickable */}
-                <div className="relative z-10">
-                  <Link
-                    href="/learn"
-                    className="inline-flex items-center gap-2 px-8 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
-                  >
-                    Get Started
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
+                >
+                  <span>Get Started</span>
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div className="text-center mb-0">
+                  
+                  
+                </div>
+
+                {/* Example Progress Cards */}
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Business Book Card */}
+                    <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02]">
+                      <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
+                      
+                      <div className="relative bg-[#1e1f23] p-6 rounded-2xl h-full">
+                        <div className="flex items-start gap-6 mb-6">
+                          <div className="w-32 h-48 flex-shrink-0">
+                            <img 
+                              src="https://m.media-amazon.com/images/I/714FbKtXS+L._AC_UF1000,1000_QL80_.jpg"
+                              alt="Power of Now Book Cover"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-2xl font-bold text-white mb-2">Power of Now</h3>
+                            <p className="text-gray-400 text-sm mb-6">Collection of highlights from Power of Now</p>
+                            
+                            {/* Progress Section */}
+                            <div className="space-y-4">
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-400">Mastery Progress</span>
+                                <span className="text-sm text-gray-400">3/5 reviews</span>
+                              </div>
+                              <div className="w-full bg-[#141517] rounded-full h-2.5">
+                                <div 
+                                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full transition-all duration-500"
+                                  style={{ width: `${calculateMasteryPercentage(3)}%` }}
+                                />
+                              </div>
+                              <div className="flex justify-between items-center text-xs text-gray-500">
+                                <span>Just Started</span>
+                                <span>Mastered</span>
+                              </div>
+                            </div>
+
+                            {/* Stats */}
+                            <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-800">
+                              <div>
+                                <p className="text-2xl font-bold text-white">12</p>
+                                <p className="text-sm text-gray-400">Total Highlights</p>
+                              </div>
+                              <div>
+                                <p className="text-2xl font-bold text-white">60%</p>
+                                <p className="text-sm text-gray-400">Retention Rate</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Personal Development Card */}
+                    <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02]">
+                      <div className="absolute -inset-[1px] bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
+                      
+                      <div className="relative bg-[#1e1f23] p-6 rounded-2xl h-full">
+                        <div className="flex items-start gap-6 mb-6">
+                          <div className="w-32 h-48 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Brain className="w-12 h-12 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-2xl font-bold text-white mb-2">Business notes</h3>
+                            <p className="text-gray-400 text-sm mb-6">Folder of your own business notes</p>
+
+                            {/* Progress Section */}
+                            <div className="space-y-4">
+                              <div className="flex justify-between items-center">
+                                <span className="text-sm text-gray-400">Mastery Progress</span>
+                                <span className="text-sm text-gray-400">4/5 reviews</span>
+                              </div>
+                              <div className="w-full bg-[#141517] rounded-full h-2.5">
+                                <div 
+                                  className="bg-gradient-to-r from-green-500 to-blue-500 h-2.5 rounded-full transition-all duration-500"
+                                  style={{ width: `${calculateMasteryPercentage(4)}%` }}
+                                />
+                              </div>
+                              <div className="flex justify-between items-center text-xs text-gray-500">
+                                <span>Just Started</span>
+                                <span>Mastered</span>
+                              </div>
+                            </div>
+
+                            {/* Stats */}
+                            <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-800">
+                              <div>
+                                <p className="text-2xl font-bold text-white">8</p>
+                                <p className="text-sm text-gray-400">Total Highlights</p>
+                              </div>
+                              <div>
+                                <p className="text-2xl font-bold text-white">80%</p>
+                                <p className="text-sm text-gray-400">Retention Rate</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            <div className="flex justify-center px-4 sm:px-0">
-              <Image 
-                src="/test.PNG"
-                alt="Platform preview"
-                width={350}
-                height={350}
-                className="mt-24 rounded-3xl border-2 border-white/50 w-full sm:w-[350px] h-auto"
-                priority
-                quality={100}
-              />
-            </div>
+            
             {/* Hero Section */}
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
                 {/* How It Works Section */}
@@ -407,9 +511,9 @@ const handleSubmit = async (e) => {
                       <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
                         <span className="text-2xl font-bold text-blue-500">1</span>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-4">Choose the content</h3>
+                      <h3 className="text-xl font-bold text-white mb-4">Choose highlights you don't want to forget</h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Upload your book highlights, notes you want to remember or let AI create a course on whatever you want to learn.
+                        Upload your book highlights, notes you want to remember.
                       </p>
                     </div>
                   </div>
@@ -424,7 +528,7 @@ const handleSubmit = async (e) => {
                       </div>
                       <h3 className="text-xl font-bold text-white mb-4">Receive it in your email</h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Get the content you chose delivered to your email piece by piece
+                        Get daily emails of your highlights and let AI create you a learning schedule.
                       </p>
                     </div>
                   </div>
@@ -976,6 +1080,9 @@ const handleSubmit = async (e) => {
                   </p>
                 </div>
               </div>
+
+              {/* Mastery Progress Section */}
+              
 
               {/* Footer */}
               <footer className="border-t border-gray-800 mt-20">
