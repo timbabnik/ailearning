@@ -70,11 +70,11 @@ const handleSubmit = async (e) => {
   // Move colorMap outside the function to use it in multiple places
   const colorMap = {
     Mon: 'blue',
-    Tue: 'purple',
-    Wed: 'purple',
-    Thu: 'purple',
-    Fri: 'purple',
-    Sat: 'green',
+    Tue: 'green',
+    Wed: 'green',
+    Thu: 'green',
+    Fri: 'green',
+    Sat: 'purple',
     Sun: 'yellow'
   };
   
@@ -288,13 +288,13 @@ const handleSubmit = async (e) => {
                 {showModal && (
                   <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-gradient-to-br from-[#1a1b1e] to-[#252629] p-8 rounded-2xl max-w-md w-full mx-4 border border-white/10 shadow-xl shadow-black/20">
-                      <div className="relative">
+                      <div className="relative z-10">
                         {/* Decorative elements */}
-                        <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/10 rounded-full blur-xl" />
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl" />
+                        <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/10 rounded-full blur-xl -z-10"></div>
+                        <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl -z-10"></div>
                         
-                        <h3 className="text-2xl font-bold text-white mb-2 relative">Get Access Now</h3>
-                        <p className="text-gray-400 mb-8">Experience personalized AI-powered learning today and transform your education journey!</p>
+                        <h3 className="text-2xl font-bold text-white mb-2 relative">Get Access for Free</h3>
+                        <p className="text-gray-400 mb-8">While our premium platform will cost at launch, waitlist members will receive lifetime free access. Join now to lock in this exclusive offer!</p>
                         
                         <div className="relative mb-6">
                           <input
@@ -304,10 +304,10 @@ const handleSubmit = async (e) => {
                             onChange={(e) => setWaitlistEmail(e.target.value)}
                             className="w-full px-4 py-3 bg-white/5 text-white placeholder-gray-400 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/5 rounded-xl pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/5 rounded-xl pointer-events-none"></div>
                         </div>
 
-                        <div className="flex justify-end gap-4">
+                        <div className="flex justify-start gap-4 relative z-20">
                           <button
                             onClick={() => setShowModal(false)}
                             className="px-5 py-2.5 text-gray-400 hover:text-white transition-colors relative group"
@@ -356,20 +356,25 @@ const handleSubmit = async (e) => {
             <div className="text-center">
                 <h1 id="learn" className="text-4xl sm:text-6xl font-bold text-white mb-6 mt-10">
                   
-                  Turn Notes <span className="text-blue-500">into Mastery</span>
+                  Turn Bookmarks <span className="text-blue-500">into Mastery</span>
                 </h1>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                Get your Book highlights or important notes delivered to your email every day until you master them
+                Capture ideas, links, articles, and highlights in one click. Revisit them through smart, personalized email automation—delivered right to your inbox.
                 </p>
                 
                 {/* Add relative positioning and z-index to ensure button is clickable */}
-                <button
-      onClick={() => setShowModal(true)}
-      className="relative z-20 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
-    >
-      <span>Get Started</span>
-      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-    </button>
+                <div className="text-center">
+                  <button
+                    onClick={() => setShowModal(true)}
+                    className="relative z-20 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
+                  >
+                    <span className="flex items-center gap-2">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/800px-Google_Chrome_icon_%28February_2022%29.svg.png" className="w-5 h-5" />
+                      Download Extension
+                    </span>
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div className="text-center mb-0">
@@ -377,112 +382,30 @@ const handleSubmit = async (e) => {
                   
                 </div>
 
-                {/* Example Progress Cards */}
-                <div className="max-w-5xl mx-auto">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Business Book Card */}
-                    <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02]">
-                      <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
-                      
-                      <div className="relative bg-[#1e1f23] p-6 rounded-2xl h-full">
-                        <div className="flex items-start gap-6 mb-6">
-                          <div className="w-32 h-48 flex-shrink-0">
-                            <img 
-                              src="https://m.media-amazon.com/images/I/714FbKtXS+L._AC_UF1000,1000_QL80_.jpg"
-                              alt="Power of Now Book Cover"
-                              className="w-full h-full object-cover rounded-lg"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-white mb-2">Power of Now</h3>
-                            <p className="text-gray-400 text-sm mb-6">Collection of highlights from Power of Now</p>
-                            
-                            {/* Progress Section */}
-                            <div className="space-y-4">
-                              <div className="flex justify-between items-center">
-                                <span className="text-sm text-gray-400">Mastery Progress</span>
-                                <span className="text-sm text-gray-400">3/5 reviews</span>
-                              </div>
-                              <div className="w-full bg-[#141517] rounded-full h-2.5">
-                                <div 
-                                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full transition-all duration-500"
-                                  style={{ width: `${calculateMasteryPercentage(3)}%` }}
-                                />
-                              </div>
-                              <div className="flex justify-between items-center text-xs text-gray-500">
-                                <span>Just Started</span>
-                                <span>Mastered</span>
-                              </div>
-                            </div>
-
-                            {/* Stats */}
-                            <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-800">
-                              <div>
-                                <p className="text-2xl font-bold text-white">12</p>
-                                <p className="text-sm text-gray-400">Total Highlights</p>
-                              </div>
-                              <div>
-                                <p className="text-2xl font-bold text-white">60%</p>
-                                <p className="text-sm text-gray-400">Retention Rate</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Personal Development Card */}
-                    <div className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.02]">
-                      <div className="absolute -inset-[1px] bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity"></div>
-                      
-                      <div className="relative bg-[#1e1f23] p-6 rounded-2xl h-full">
-                        <div className="flex items-start gap-6 mb-6">
-                          <div className="w-32 h-48 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Brain className="w-12 h-12 text-white" />
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-white mb-2">Business notes</h3>
-                            <p className="text-gray-400 text-sm mb-6">Folder of your own business notes</p>
-
-                            {/* Progress Section */}
-                            <div className="space-y-4">
-                              <div className="flex justify-between items-center">
-                                <span className="text-sm text-gray-400">Mastery Progress</span>
-                                <span className="text-sm text-gray-400">4/5 reviews</span>
-                              </div>
-                              <div className="w-full bg-[#141517] rounded-full h-2.5">
-                                <div 
-                                  className="bg-gradient-to-r from-green-500 to-blue-500 h-2.5 rounded-full transition-all duration-500"
-                                  style={{ width: `${calculateMasteryPercentage(4)}%` }}
-                                />
-                              </div>
-                              <div className="flex justify-between items-center text-xs text-gray-500">
-                                <span>Just Started</span>
-                                <span>Mastered</span>
-                              </div>
-                            </div>
-
-                            {/* Stats */}
-                            <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-gray-800">
-                              <div>
-                                <p className="text-2xl font-bold text-white">8</p>
-                                <p className="text-sm text-gray-400">Total Highlights</p>
-                              </div>
-                              <div>
-                                <p className="text-2xl font-bold text-white">80%</p>
-                                <p className="text-sm text-gray-400">Retention Rate</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                {/* Video Section */}
+                <div className="relative w-full max-w-4xl mx-auto mb-20 rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="aspect-w-16 aspect-h-9">
+                    <video 
+                      className="w-full h-full object-cover"
+                      controls
+                      playsInline
+                      preload="auto"
+                    >
+                      <source src="/video/presentation.mov" type="video/mp4" />
+                      <p>
+                        Your browser doesn't support HTML5 video. Here is a 
+                        <a href="/video/demo.mp4">link to the video</a> instead.
+                      </p>
+                    </video>
                   </div>
                 </div>
+
+                {/* Example Progress Cards */}
+                
               </div>
             
             {/* Hero Section */}
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-32">
                 {/* How It Works Section */}
                 <div className="text-center mb-16">
                  
@@ -501,9 +424,9 @@ const handleSubmit = async (e) => {
                       <div className="bg-blue-500/10 w-12 h-12 rounded-full flex items-center justify-center mb-6">
                         <span className="text-2xl font-bold text-blue-500">1</span>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-4">Choose highlights you don't want to forget</h3>
+                      <h3 className="text-xl font-bold text-white mb-4">One Click to Save Anything</h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Upload your book highlights, notes you want to remember.
+                      Highlight text, save links, or capture YouTube timestamps right from your browser. Just click the extension, pick a folder, and it's saved—organized and ready to revisit.
                       </p>
                     </div>
                   </div>
@@ -518,7 +441,7 @@ const handleSubmit = async (e) => {
                       </div>
                       <h3 className="text-xl font-bold text-white mb-4">Receive it in your email</h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Get daily emails of your highlights and let AI create you a learning schedule.
+                      Choose what you want to remember—by topic, folder, or random. Get it delivered to your inbox on your schedule, so nothing valuable gets lost or forgotten.
                       </p>
                     </div>
                   </div>
@@ -528,7 +451,7 @@ const handleSubmit = async (e) => {
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-[#1e1f23] rounded-xl mt-32">
                 <div className="text-center mb-12">
                   <h2 id="schedule" className="text-3xl font-bold text-white mb-4 max-w-[600px] mx-auto px-4 sm:px-0">
-                    Receive exactly what you want every day to boost your genius
+                    Refresh knowledge of your favorite highlights, blog links, articles, tweets, videos, ...
                   </h2>
                   
                 </div>
@@ -572,235 +495,53 @@ const handleSubmit = async (e) => {
                           <Calendar className={`w-5 h-5 text-${colorMap[selectedDay]}-500`} />
                         </div>
                         <h3 className="text-white font-medium">
-                          {colorMap[selectedDay] === 'blue' ? "Deep Learning" :
-                           colorMap[selectedDay] === 'purple' ? "AI created course" :
-                           colorMap[selectedDay] === 'green' ? "Random Highlights" :
-                           colorMap[selectedDay] === 'yellow' ? "Favorites" :
+                          {colorMap[selectedDay] === 'blue' ? "Check it later" :
+                           colorMap[selectedDay] === 'purple' ? "Business content" :
+                           colorMap[selectedDay] === 'green' ? "Random" :
+                           colorMap[selectedDay] === 'yellow' ? "Quotes" :
                            "Today's Email"}
                         </h3>
                       </div>
 
                       {colorMap[selectedDay] === 'purple' && (
-                        <div className="rounded-lg mt-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-3 mt-4">
+                        <div className="mt-4">
+                        <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/20">
+                          <div className="flex items-center justify-between mb-4">
+                            <p className="text-white/80 text-sm">
+                            Refresh your saved business content
+                            </p>
+                            
+                          </div>
                           
-                              <h3 className="text-white font-medium">
-                                {selectedDay === 'Tue' ? "Founding and Early Republic" :
-                                 selectedDay === 'Wed' ? "The Roman Republic" :
-                                 selectedDay === 'Thu' ? "The Roman Empire" :
-                                 selectedDay === 'Fri' ? "Decline and Fall" :
-                                 "Today's Email"}
-                              </h3>
-                            </div>
+                          <div className="flex items-center gap-2 text-sm text-purple-400/80">
+                            <Mail className="w-4 h-4" />
+                            <span>Next email scheduled for tomorrow at 9:00 AM</span>
                           </div>
-
-                          <div className="mt-4">
-                            <div className="space-y-6 relative">
-                              {/* Dynamic content based on selected day */}
-                              {selectedDay === 'Tue' && (
-                                <>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Legend of Romulus and Remus
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      Establishment of the Roman Republic
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-16 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Twelve Tables
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                    </div>
-                                    <div className="ml-6">
-                                      <p className="text-white/60 text-sm">
-                                      Expansion in the Italian Peninsula
-                                      </p>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {selectedDay === 'Wed' && (
-                                <>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Punic Wars and Carthage
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Gracchi Brothers and Social Reforms
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-16 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Rise of Julius Caesar
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                    </div>
-                                    <div className="ml-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Fall of the Republic and Civil Wars
-                                      </p>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {selectedDay === 'Thu' && (
-                                <>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Reign of Augustus and the Pax Romana
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Julio-Claudian Dynasty
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-16 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Five Good Emperors
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                    </div>
-                                    <div className="ml-6">
-                                      <p className="text-white/60 text-sm">
-                                      Crisis of the Third Century
-                                      </p>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-
-                              {selectedDay === 'Fri' && (
-                                <>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Division of the Empire
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-20 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Rise of Christianity
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                      <div className="absolute top-3 left-1.5 w-0.5 h-16 bg-white"></div>
-                                    </div>
-                                    <div className="ml-6 pb-6">
-                                      <p className="text-white/60 text-sm">
-                                      Barbarian Invasions
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-start">
-                                    <div className="relative">
-                                      <div className="w-3 h-3 bg-white rounded-full"></div>
-                                    </div>
-                                    <div className="ml-6">
-                                      <p className="text-white/60 text-sm">
-                                      The Fall of the Western Roman Empire
-                                      </p>
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </div>
-                          </div>
+                          
                         </div>
+                       
+                      </div>
                       )}
 
                       {
                         colorMap[selectedDay] === 'yellow' && (
                           <div className="mt-4">
-                            <p className="text-white/80 text-sm mb-4">
-                              You will get highlights you favorited. Curate your favorites that inspires you and get them every day.
-                            </p>
+                          <div className="bg-yellow-500/10 rounded-lg p-4 border border-yellow-500/20">
+                            <div className="flex items-center justify-between mb-4">
+                              <p className="text-white/80 text-sm">
+                              Revisit your favorite quotes and inspirational content
+                              </p>
+                              
+                            </div>
+                            
+                            <div className="flex items-center gap-2 text-sm text-yellow-400/80">
+                              <Mail className="w-4 h-4" />
+                              <span>Next email scheduled for tomorrow at 9:00 AM</span>
+                            </div>
+                            
                           </div>
+                         
+                        </div>
                         )
                       }
 
@@ -808,7 +549,7 @@ const handleSubmit = async (e) => {
                             colorMap[selectedDay] === 'green' && (
                                 <div className="mt-4">
                           <p className="text-white/80 text-sm mb-4">
-                            You will get 5 random highlights from your books and notes
+                          Get random highlights from your collection to your email to refresh your memory.
                           </p>
                           <div className="flex items-center gap-2">
                             <button
@@ -833,50 +574,21 @@ const handleSubmit = async (e) => {
                        
                         {colorMap[selectedDay] === 'blue' && (
                         <div className="mt-4">
-                          <p className="text-white/80 text-sm mb-4">
-                            Every week you will get deep into one of your books/notes with takeaways
-                          </p>
-                          <p className="text-white/60 text-sm mb-2">Current book:</p>
-                          <div className="bg-white/10 p-3 rounded-lg">
-                              <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
-                               
-                                  <button
-                                    className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/10 transition-colors"
-                                  >
-                                    <div className="relative w-12 h-16 flex-shrink-0">
-                                      <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5qcmy62N6gLb08y6YeeZGNOXuuLoTiO303w&s"
-                                        
-                                        fill
-                                        className="rounded object-cover"
-                                      />
-                                    </div>
-                                    <div className="text-left">
-                                      <p className="text-white text-xs font-medium truncate">Happy Odyssey</p>
-                                      <p className="text-white/60 text-xs truncate">Adrian Carton de Wiart</p>
-                                    </div>
-                                  </button>
+                          <div className="bg-blue-500/10 rounded-lg p-4 border border-blue-500/20">
+                            <div className="flex items-center justify-between mb-4">
+                              <p className="text-white/80 text-sm">
+                                Get emails of content you saved and want to check out later
+                              </p>
+                              
+                            </div>
                             
-                                </div>
-                              </div>
+                            <div className="flex items-center gap-2 text-sm text-blue-400/80">
+                              <Mail className="w-4 h-4" />
+                              <span>Next email scheduled for tomorrow at 9:00 AM</span>
+                            </div>
                             
-
-                              <div className="mt-4">
-                                <p className="text-white/60 text-sm border-t border-gray-500 pt-4">
-                                <>
-                                      With 15 highlights per day, it will take you{' '}
-                                      <span className="text-white">
-                                        3 days
-                                      </span>{' '}
-                                      to go through all{' '}
-                                      <span className="text-white">
-                                       15 highlights
-                                      </span>
-                                      
-                                    </>
-                                </p>
-                              </div>
-                            
+                          </div>
+                         
                         </div>
                       )}
                         
@@ -886,14 +598,17 @@ const handleSubmit = async (e) => {
                   </div>
 
                   {/* CTA Button */}
-                  <div className="text-center mt-12">
-                    <Link 
-                      href="/learn"
-                      className="inline-flex items-center gap-2 px-8 py-3 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors"
+                  <div className="flex justify-center mt-8">
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="relative z-20 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
                     >
-                      Start Your Learning Journey
-                      <ChevronRight className="w-4 h-4" />
-                    </Link>
+                      <span className="flex items-center gap-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/800px-Google_Chrome_icon_%28February_2022%29.svg.png" className="w-5 h-5" />
+                        Download Extension
+                      </span>
+                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </button>
                   </div>
                 </div>
 
@@ -935,7 +650,7 @@ const handleSubmit = async (e) => {
                     Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Learners</span>
                   </h2>
                   <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                    Join thousands of people who are transforming their learning journey with AI-powered education
+                    Join thousands of people who are transforming their learning journey with Daily Odin
                   </p>
                 </div>
 
@@ -943,7 +658,6 @@ const handleSubmit = async (e) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {/* Testimonial 1 */}
                   <div className="group relative">
-                    {/* Decorative Elements */}
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
                     
                     <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
@@ -955,7 +669,7 @@ const handleSubmit = async (e) => {
                         />
                         <div>
                           <h3 className="text-white font-semibold">Sarah Johnson</h3>
-                          <p className="text-gray-400 text-sm">Product Designer</p>
+                          <p className="text-gray-400 text-sm">Content Creator</p>
                         </div>
                       </div>
                       <div className="mb-6">
@@ -966,9 +680,9 @@ const handleSubmit = async (e) => {
                         </div>
                       </div>
                       <p className="text-gray-300 text-sm leading-relaxed">
-                        "This platform has completely transformed how I learn. The AI-curated content 
-                        and spaced repetition of my book highlights have helped me retain information 
-                        better than ever before. It's like having a personal learning assistant!"
+                        "Finally found a solution to my 'bookmark and forget' problem! The daily emails with my saved content 
+                        keep me engaged with what I've bookmarked. Love how I can highlight key parts of articles and 
+                        revisit them later. It's like having a second brain!"
                       </p>
                     </div>
                   </div>
@@ -986,7 +700,7 @@ const handleSubmit = async (e) => {
                         />
                         <div>
                           <h3 className="text-white font-semibold">Michael Chen</h3>
-                          <p className="text-gray-400 text-sm">Software Engineer</p>
+                          <p className="text-gray-400 text-sm">Research Analyst</p>
                         </div>
                       </div>
                       <div className="mb-6">
@@ -997,9 +711,9 @@ const handleSubmit = async (e) => {
                         </div>
                       </div>
                       <p className="text-gray-300 text-sm leading-relaxed">
-                        "The daily emails with my book highlights keep me engaged with what I've read. 
-                        The AI-generated courses are incredibly well-structured and the learning experience 
-                        is seamless. Highly recommend!"
+                        "The Chrome extension is a game-changer! One click to save interesting content, 
+                        and the scheduled email reminders help me actually revisit what I've saved. 
+                        Perfect for someone who reads a lot of articles and wants to retain the knowledge."
                       </p>
                     </div>
                   </div>
@@ -1017,7 +731,7 @@ const handleSubmit = async (e) => {
                         />
                         <div>
                           <h3 className="text-white font-semibold">Emily Rodriguez</h3>
-                          <p className="text-gray-400 text-sm">Marketing Director</p>
+                          <p className="text-gray-400 text-sm">Digital Marketer</p>
                         </div>
                       </div>
                       <div className="mb-6">
@@ -1028,9 +742,9 @@ const handleSubmit = async (e) => {
                         </div>
                       </div>
                       <p className="text-gray-300 text-sm leading-relaxed">
-                        "As a busy professional, this platform has been a game-changer. The personalized 
-                        learning paths and bite-sized content make it easy to stay consistent with my 
-                        learning goals. The UI is beautiful and intuitive!"
+                        "As someone who's always finding inspiring content online, this tool is invaluable. 
+                        I can quickly save quotes, tweets, and article highlights, and the email reminders 
+                        ensure I actually review and use what I've saved. It's transformed how I learn from online content!"
                       </p>
                     </div>
                   </div>
@@ -1058,13 +772,16 @@ const handleSubmit = async (e) => {
 
                 {/* Final CTA */}
                 <div className="text-center mt-20">
-                  <Link 
-                    href="/learn"
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
-                  >
-                    <span>Join Our Community</span>
-                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                <button
+      onClick={() => setShowModal(true)}
+      className="relative z-20 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
+    >
+      <span className="flex items-center gap-2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/800px-Google_Chrome_icon_%28February_2022%29.svg.png" className="w-5 h-5" />
+        Download Extension
+      </span>
+      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </button>
                   <p className="text-gray-400 text-sm mt-4">
                     Start your learning journey today
                   </p>
