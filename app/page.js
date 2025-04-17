@@ -391,7 +391,7 @@ const handleSubmit = async (e) => {
                       playsInline
                       preload="auto"
                     >
-                      <source src="/video/presentation.mov" type="video/mp4" />
+                      <source src="/video/presentatio.mov" type="video/mp4" />
                       <p>
                         Your browser doesn't support HTML5 video. Here is a 
                         <a href="/video/demo.mp4">link to the video</a> instead.
