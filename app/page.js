@@ -783,7 +783,7 @@ const handleSubmit = async (e) => {
       <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
     </button>
                   <p className="text-gray-400 text-sm mt-4">
-                    Start your learning journey today
+                    Capture your learning journey
                   </p>
                 </div>
               </div>
