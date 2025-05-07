@@ -795,7 +795,7 @@ const handleSubmit = async (e) => {
               <footer className="border-t border-gray-800 mt-20">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                   <p className="text-center text-gray-400 text-sm">
-                    © 2024 Your Learning Platform. All rights reserved.
+                    © 2024 Daily Odin. All rights reserved.
                   </p>
                 </div>
               </footer>
