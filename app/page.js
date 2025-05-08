@@ -751,24 +751,7 @@ const handleSubmit = async (e) => {
                 </div>
 
                 {/* Stats Section */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20">
-                  <div className="text-center">
-                    <h4 className="text-3xl font-bold text-white mb-2">10k+</h4>
-                    <p className="text-gray-400 text-sm">Active Learners</p>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-3xl font-bold text-white mb-2">50k+</h4>
-                    <p className="text-gray-400 text-sm">Book Highlights</p>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-3xl font-bold text-white mb-2">100+</h4>
-                    <p className="text-gray-400 text-sm">AI Courses</p>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-3xl font-bold text-white mb-2">4.9</h4>
-                    <p className="text-gray-400 text-sm">Average Rating</p>
-                  </div>
-                </div>
+               
 
                 {/* Final CTA */}
                 <div className="text-center mt-20">
