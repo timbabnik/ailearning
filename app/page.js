@@ -650,7 +650,7 @@ const handleSubmit = async (e) => {
                     Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Learners</span>
                   </h2>
                   <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                    Join thousands of people who are transforming their learning journey with Daily Odin
+                    Join 1000+ of people who are transforming their learning journey with Daily Odin
                   </p>
                 </div>
 
