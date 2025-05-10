@@ -383,20 +383,62 @@ const handleSubmit = async (e) => {
                 </div>
 
                 {/* Video Section */}
-                <div className="relative w-full max-w-4xl mx-auto mb-20 rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-w-16 aspect-h-9">
-                    <video 
-                      className="w-full h-full object-cover"
-                      controls
-                      playsInline
-                      preload="auto"
-                    >
-                      <source src="/video/presentatio.mov" type="video/mp4" />
-                      <p>
-                        Your browser doesn't support HTML5 video. Here is a 
-                        <a href="/video/demo.mp4">link to the video</a> instead.
-                      </p>
-                    </video>
+                <div className="relative w-full max-w-4xl mx-auto mb-20">
+                  {/* Animated gradient border */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-2xl blur-sm animate-gradient-xy"></div>
+                  
+                  {/* Glow effects */}
+                  <div className="absolute -inset-2">
+                    <div className="w-full h-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur-xl"></div>
+                  </div>
+
+                  {/* Corner accents */}
+                  <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-blue-500/50 rounded-tl-lg"></div>
+                  <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-purple-500/50 rounded-tr-lg"></div>
+                  <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-purple-500/50 rounded-bl-lg"></div>
+                  <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-blue-500/50 rounded-br-lg"></div>
+
+                  {/* Video container */}
+                  <div className="relative bg-[#1e1f23] rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="aspect-w-16 aspect-h-9">
+                      <video 
+                        className="w-full h-full object-cover"
+                        controls
+                        playsInline
+                        preload="auto"
+                      >
+                        <source src="/video/presentatio.mov" type="video/mp4" />
+                        <p>
+                          Your browser doesn't support HTML5 video. Here is a 
+                          <a href="/video/demo.mp4">link to the video</a> instead.
+                        </p>
+                      </video>
+                    </div>
+
+                    {/* Play button overlay (shows before video starts) */}
+                    <div className="absolute inset-0 flex items-center justify-center group cursor-pointer">
+                      <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm transform group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                          <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-blue-500 border-b-8 border-b-transparent ml-1"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Floating particles */}
+                    <div className="absolute inset-0 pointer-events-none">
+                      {[...Array(20)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute w-1 h-1 bg-blue-500/20 rounded-full animate-float-particle"
+                          style={{
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                            animationDelay: `${Math.random() * 5}s`,
+                            animationDuration: `${15 + Math.random() * 10}s`
+                          }}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
 

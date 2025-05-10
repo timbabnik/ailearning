@@ -16,10 +16,32 @@ module.exports = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        'gradient-xy': {
+          '0%, 100%': {
+            'background-size': '400% 400%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        },
+        'float-particle': {
+          '0%, 100%': {
+            transform: 'translateY(0) translateX(0)',
+            opacity: 0
+          },
+          '50%': {
+            transform: 'translateY(-100px) translateX(100px)',
+            opacity: 1
+          }
+        }
       },
       animation: {
         'slide-up': 'slide-up 0.3s ease-out',
         'fade-in': 'fade-in 0.2s ease-out',
+        'gradient-xy': 'gradient-xy 3s ease infinite',
+        'float-particle': 'float-particle 10s ease infinite',
       },
       backgroundSize: {
         'size-200': '200% 200%',
