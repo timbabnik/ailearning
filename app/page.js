@@ -452,7 +452,7 @@ const handleSubmit = async (e) => {
                 <div className="text-center mb-16">
                  
                   <h2 className="text-4xl sm:text-5xl font-bold text-white mt-4 mb-6">
-                    How It <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Works</span>
+                    How it <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Works</span>
                     <div className="flex justify-center mt-4">
                       <ChevronRight className="w-6 h-6 text-blue-500 transform rotate-90" />
                     </div>
