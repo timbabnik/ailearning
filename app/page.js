@@ -699,120 +699,144 @@ const handleSubmit = async (e) => {
                   </p>
                 </div>
 
-                {/* Testimonials Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {/* Testimonial 1 */}
-                  <div className="group relative">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
-                      <div className="flex items-center gap-4 mb-6">
-                        <img 
-                          src="https://i.pravatar.cc/150?img=32" 
-                          alt="Sarah Johnson" 
-                          className="w-12 h-12 rounded-full border-2 border-blue-500/20"
-                        />
-                        <div>
-                          <h3 className="text-white font-semibold">Sarah Johnson</h3>
-                          <p className="text-gray-400 text-sm">Content Creator</p>
+                {/* Scrollable Testimonials Container */}
+                <div className="relative">
+                  {/* Gradient Masks */}
+                  <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#1a1b1e] to-transparent z-10"></div>
+                  <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#1a1b1e] to-transparent z-10"></div>
+
+                  {/* Scroll Container */}
+                  <div className="overflow-x-auto scrollbar-hide">
+                    <div className="flex gap-6 pb-4 min-w-max px-4">
+                      {/* Testimonial 1 */}
+                      <div className="group relative w-[400px] flex-shrink-0">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
+                        <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
+                          <div className="flex items-center gap-4 mb-6">
+                            <img 
+                              src="https://i.pravatar.cc/150?img=32" 
+                              alt="Sarah Johnson" 
+                              className="w-12 h-12 rounded-full border-2 border-blue-500/20"
+                            />
+                            <div>
+                              <h3 className="text-white font-semibold">Sarah Johnson</h3>
+                              <p className="text-gray-400 text-sm">Content Creator</p>
+                            </div>
+                          </div>
+                          <div className="mb-6">
+                            <div className="flex gap-1 text-yellow-500">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-current" />
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            "Finally found a solution to my 'bookmark and forget' problem! The daily emails with my saved content 
+                            keep me engaged with what I've bookmarked. Love how I can highlight key parts of articles and 
+                            revisit them later. It's like having a second brain!"
+                          </p>
                         </div>
                       </div>
-                      <div className="mb-6">
-                        <div className="flex gap-1 text-yellow-500">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-current" />
-                          ))}
+
+                      {/* Testimonial 2 */}
+                      <div className="group relative w-[400px] flex-shrink-0">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
+                        <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
+                          <div className="flex items-center gap-4 mb-6">
+                            <img 
+                              src="https://i.pravatar.cc/150?img=11" 
+                              alt="Michael Chen" 
+                              className="w-12 h-12 rounded-full border-2 border-purple-500/20"
+                            />
+                            <div>
+                              <h3 className="text-white font-semibold">Michael Chen</h3>
+                              <p className="text-gray-400 text-sm">Research Analyst</p>
+                            </div>
+                          </div>
+                          <div className="mb-6">
+                            <div className="flex gap-1 text-yellow-500">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-current" />
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            "The Chrome extension is a game-changer! One click to save interesting content, 
+                            and the scheduled email reminders help me actually revisit what I've saved. 
+                            Perfect for someone who reads a lot of articles and wants to retain the knowledge."
+                          </p>
                         </div>
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        "Finally found a solution to my 'bookmark and forget' problem! The daily emails with my saved content 
-                        keep me engaged with what I've bookmarked. Love how I can highlight key parts of articles and 
-                        revisit them later. It's like having a second brain!"
-                      </p>
+
+                      {/* Testimonial 3 */}
+                      <div className="group relative w-[400px] flex-shrink-0">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
+                        <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
+                          <div className="flex items-center gap-4 mb-6">
+                            <img 
+                              src="https://i.pravatar.cc/150?img=44" 
+                              alt="Emily Rodriguez" 
+                              className="w-12 h-12 rounded-full border-2 border-blue-500/20"
+                            />
+                            <div>
+                              <h3 className="text-white font-semibold">Emily Rodriguez</h3>
+                              <p className="text-gray-400 text-sm">Digital Marketer</p>
+                            </div>
+                          </div>
+                          <div className="mb-6">
+                            <div className="flex gap-1 text-yellow-500">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-current" />
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            "As someone who's always finding inspiring content online, this tool is invaluable. 
+                            I can quickly save quotes, tweets, and article highlights, and the email reminders 
+                            ensure I actually review and use what I've saved. It's transformed how I learn from online content!"
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Additional Testimonials */}
+                      <div className="group relative w-[400px] flex-shrink-0">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
+                        <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
+                          <div className="flex items-center gap-4 mb-6">
+                            <img 
+                              src="https://i.pravatar.cc/150?img=68" 
+                              alt="David Kim" 
+                              className="w-12 h-12 rounded-full border-2 border-purple-500/20"
+                            />
+                            <div>
+                              <h3 className="text-white font-semibold">David Kim</h3>
+                              <p className="text-gray-400 text-sm">Software Engineer</p>
+                            </div>
+                          </div>
+                          <div className="mb-6">
+                            <div className="flex gap-1 text-yellow-500">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 fill-current" />
+                              ))}
+                            </div>
+                          </div>
+                          <p className="text-gray-300 text-sm leading-relaxed">
+                            "The spaced repetition feature is brilliant! I use it to review programming concepts 
+                            and best practices. The ability to customize email schedules helps me maintain a 
+                            steady learning pace without feeling overwhelmed."
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Testimonial 2 */}
-                  <div className="group relative">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
-                      <div className="flex items-center gap-4 mb-6">
-                        <img 
-                          src="https://i.pravatar.cc/150?img=11" 
-                          alt="Michael Chen" 
-                          className="w-12 h-12 rounded-full border-2 border-purple-500/20"
-                        />
-                        <div>
-                          <h3 className="text-white font-semibold">Michael Chen</h3>
-                          <p className="text-gray-400 text-sm">Research Analyst</p>
-                        </div>
-                      </div>
-                      <div className="mb-6">
-                        <div className="flex gap-1 text-yellow-500">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-current" />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        "The Chrome extension is a game-changer! One click to save interesting content, 
-                        and the scheduled email reminders help me actually revisit what I've saved. 
-                        Perfect for someone who reads a lot of articles and wants to retain the knowledge."
-                      </p>
-                    </div>
+                  {/* Scroll Indicators */}
+                  <div className="flex justify-center gap-2 mt-8">
+                    <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                    <div className="w-2 h-2 rounded-full bg-white/20"></div>
+                    <div className="w-2 h-2 rounded-full bg-white/20"></div>
+                    <div className="w-2 h-2 rounded-full bg-white/20"></div>
                   </div>
-
-                  {/* Testimonial 3 */}
-                  <div className="group relative">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-20 group-hover:opacity-30 blur transition duration-300"></div>
-                    
-                    <div className="relative bg-[#1e1f23] p-8 rounded-2xl hover:bg-[#23242a] transition-all duration-300">
-                      <div className="flex items-center gap-4 mb-6">
-                        <img 
-                          src="https://i.pravatar.cc/150?img=44" 
-                          alt="Emily Rodriguez" 
-                          className="w-12 h-12 rounded-full border-2 border-blue-500/20"
-                        />
-                        <div>
-                          <h3 className="text-white font-semibold">Emily Rodriguez</h3>
-                          <p className="text-gray-400 text-sm">Digital Marketer</p>
-                        </div>
-                      </div>
-                      <div className="mb-6">
-                        <div className="flex gap-1 text-yellow-500">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-current" />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">
-                        "As someone who's always finding inspiring content online, this tool is invaluable. 
-                        I can quickly save quotes, tweets, and article highlights, and the email reminders 
-                        ensure I actually review and use what I've saved. It's transformed how I learn from online content!"
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Stats Section */}
-               
-
-                {/* Final CTA */}
-                <div className="text-center mt-20">
-                <button
-      onClick={() => setShowModal(true)}
-      className="relative z-20 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-medium transition-all duration-500 shadow-lg hover:shadow-blue-500/20 group"
-    >
-      <span className="flex items-center gap-2">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/800px-Google_Chrome_icon_%28February_2022%29.svg.png" className="w-5 h-5" />
-        Download Extension
-      </span>
-      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-    </button>
-                  <p className="text-gray-400 text-sm mt-4">
-                    Capture your learning journey
-                  </p>
                 </div>
               </div>
 
