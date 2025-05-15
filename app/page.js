@@ -843,6 +843,38 @@ const handleSubmit = async (e) => {
               {/* Mastery Progress Section */}
               
 
+              {/* Thank You Section */}
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-white/10">
+                <div className="relative">
+                  {/* Background glow */}
+                  <div className="absolute inset-0">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                      Thanks for Visiting! 🙏
+                    </h2>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+                      We're excited to help you transform your learning journey. Join our waitlist to be among the first to experience Odin's AI.
+                    </p>
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white rounded-xl transition-all duration-300 group border border-white/10"
+                    >
+                      <span>Join Waitlist</span>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+
+                  {/* Decorative elements */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+                </div>
+              </div>
+
               {/* Footer */}
               <footer className="border-t border-gray-800 mt-20">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
