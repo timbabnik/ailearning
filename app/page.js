@@ -356,7 +356,7 @@ const handleSubmit = async (e) => {
             <div className="text-center">
                 <h1 id="learn" className="text-4xl sm:text-6xl font-bold text-white mb-6 mt-10">
                   
-                  Turn Bookmarks <span className="text-blue-500">into Mastery!</span>
+                  Turn Bookmarks <span className="text-blue-500">into Mastery!!!</span>
                 </h1>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
                 Capture ideas, links, articles, and highlights in one click. Revisit them through smart, personalized email automation—delivered right to your inbox.
